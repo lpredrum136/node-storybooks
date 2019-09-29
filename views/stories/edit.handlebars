@@ -1,0 +1,46 @@
+<h1>Edit Story</h1>
+
+<div class="row">
+    <form action="/stories/{{story.id}}?_method=PUT" method="POST" class="col s12">
+        <!--Optional<input type="hidden" name="_method" value="PUT">-->
+        <div class="row">
+            <div class="input-field">
+                <input type="text" name="title" id="" value="{{story.title}}">
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select name="status" id="">
+                    <!--DOUBLECURLY BRACES #select story.status--><!-- This is Brad's way. I have another easier way. See 
+                    routes/stories.js and helpers/hbs.js for more info-->
+                    <option value="public"{{#if statusCheck.public}}  selected{{/if}}>Public</option>
+                    <option value="private"{{#if statusCheck.private}}  selected{{/if}}>Private</option>
+                    <option value="unpublished"{{#if statusCheck.unpublished}}  selected{{/if}}>Unpublished</option>
+                    <!--DOUBLECURLY BRACES /select-->
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <p>
+                <label>
+                    <input type="checkbox" name="allowComments" class="filled-in" id="filled-in"{{#if story.allowComments}} checked="checked"{{/if}}>
+                    <span>Allow comments</span>
+                </label>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell us your story</h5>
+                <textarea name="body" id="storyArea" class="materialize-textarea">{{story.body}}</textarea>
+                <!--Default--><!--<label for="storyArea">Tell us your story</label>-->
+            </div>
+        </div>
+
+        <input type="submit" value="Save" class="btn">
+    </form>
+</div>
